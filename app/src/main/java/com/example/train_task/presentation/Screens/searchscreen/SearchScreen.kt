@@ -14,24 +14,20 @@ import androidx.navigation.NavHostController
 import com.example.train_task.presentation.Screens.searchscreen.components.BinDataCard
 import com.example.train_task.presentation.Screens.searchscreen.components.SearchAppBar
 import com.example.train_task.presentation.navigation.Screens
-import androidx.compose.runtime.LaunchedEffect // Import LaunchedEffect
+import androidx.compose.runtime.LaunchedEffect
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun SearchScreen(navController: NavHostController, initialBinNumber: Int? = null) { // Add initialBinNumber parameter
+fun SearchScreen(navController: NavHostController, initialBinNumber: Int? = null) {
     val viewModel = hiltViewModel<SearchScreenViewModel>()
 
-    // Use LaunchedEffect to update the search text and trigger a search
-    // only once when the screen is composed and an initialBinNumber is provided from navigation.
+
     LaunchedEffect(initialBinNumber) {
         if (initialBinNumber != null) {
             val binNumberString = initialBinNumber.toString()
-            viewModel.updateSearchTextState(binNumberString) // Update the search text in the AppBar
-            viewModel.getBinfo(initialBinNumber) // Automatically trigger the search for the bin number
-            // Optionally, you might want to clear the argument from the saved state handle
-            // if you don't want it to persist across configuration changes or other navigations
-            // that don't explicitly set it. For this specific flow, updating the state once is fine.
+            viewModel.updateSearchTextState(binNumberString)
+            viewModel.getBinfo(initialBinNumber)
         }
     }
 

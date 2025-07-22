@@ -13,16 +13,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController // Import NavController
+import androidx.navigation.NavController
 import com.example.train_task.presentation.Screens.historyscreen.components.BinItem
-import com.example.train_task.presentation.navigation.Screens // Import Screens
+import com.example.train_task.presentation.navigation.Screens
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HistoryScreen(navController: NavController) { // Add NavController parameter
+fun HistoryScreen(navController: NavController) {
     val historyViewModel = hiltViewModel<HistoryScreenViewModel>()
-    // We no longer directly interact with SearchScreenViewModel here for updating text
+
     val bins = historyViewModel.bins.observeAsState(listOf()).value
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
@@ -71,11 +71,10 @@ fun HistoryScreen(navController: NavController) { // Add NavController parameter
                                 }
                             }
                         },
-                        onCardClick = { binNumber -> // Handle card click
-                            // Navigate back to SearchScreen with the binNumber as an argument
+                        onCardClick = { binNumber ->
                             navController.navigate(Screens.SearchScreen.createRoute(binNumber)) {
-                                popUpTo(Screens.SearchScreen.route) { inclusive = true } // Clear back stack to SearchScreen
-                                launchSingleTop = true // Avoid creating multiple copies
+                                popUpTo(Screens.SearchScreen.route) { inclusive = true }
+                                launchSingleTop = true
                             }
                         }
                     )

@@ -1,6 +1,6 @@
 package com.example.train_task.presentation.Screens.historyscreen.components
 
-import androidx.compose.foundation.clickable // Import for clickable modifier
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -23,16 +23,16 @@ fun BinItem(
     bin: Bin,
     modifier: Modifier = Modifier,
     onDeleteClick: () -> Unit,
-    onCardClick: (Int) -> Unit // New parameter for card click
+    onCardClick: (Int) -> Unit
 ) {
     Card(
         modifier = modifier
-            .clickable { onCardClick(bin.number) }, // Make the card clickable
+            .clickable { onCardClick(bin.number) },
         elevation = 1.dp
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically // Center vertically for better alignment
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 modifier = Modifier
@@ -44,7 +44,7 @@ fun BinItem(
             )
             IconButton(
                 onClick = onDeleteClick,
-                modifier = Modifier.align(Alignment.CenterVertically) // Align icon vertically
+                modifier = Modifier.align(Alignment.CenterVertically)
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
